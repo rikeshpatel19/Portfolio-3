@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 16, 2024 at 05:09 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: localhost
+-- Generation Time: Apr 17, 2024 at 11:46 AM
+-- Server version: 8.0.36-0ubuntu0.20.04.1
+-- PHP Version: 8.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `aproject`
+-- Database: `u_230118588_db`
 --
 
 -- --------------------------------------------------------
@@ -28,14 +28,14 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `projects` (
-  `pid` int(10) UNSIGNED NOT NULL,
+  `pid` int UNSIGNED NOT NULL,
   `title` varchar(100) NOT NULL,
   `start_date` date DEFAULT NULL,
   `end_date` date DEFAULT NULL,
   `phase` enum('design','development','testing','deployment','complete') DEFAULT NULL,
   `description` varchar(500) DEFAULT NULL,
-  `uid` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `uid` int UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `projects`
@@ -45,19 +45,21 @@ INSERT INTO `projects` (`pid`, `title`, `start_date`, `end_date`, `phase`, `desc
 (1, 'Title', '2024-04-14', '2024-05-14', 'complete', 'A short description', 1),
 (2, 'Title 2', '2024-04-14', '2024-04-21', 'design', 'A short description', 2),
 (3, 'Title 3', '2024-04-18', '2024-04-25', 'testing', 'A short description', 3),
-(4, 'Title 4', '2024-04-20', '2024-04-27', 'development', 'A short description', 1),
-(5, 'Title 5 ', '2024-04-28', '2024-05-05', 'development', 'A short description', 2),
-(6, 'Title 6', '2024-04-22', '2024-04-29', 'testing', 'A short description', 3),
-(7, 'Title 7', '2024-05-04', '2024-05-11', 'complete', 'A short description', 1),
-(8, 'Title 8', '2024-05-31', '2024-06-07', 'deployment', 'A short description', 2),
-(9, 'Title 9', '2024-04-29', '2024-05-06', 'deployment', 'A short description', 3),
-(10, 'Title 10', '2024-04-29', '2024-05-06', 'complete', 'A short description', 1),
-(11, 'Title 11', '2024-04-29', '2024-05-06', 'development', 'A short description', 2),
-(12, 'Title 12', '2024-04-28', '2024-05-05', 'complete', 'A short description', 3),
-(13, 'Title 13', '2024-04-12', '2024-04-19', 'design', 'A short description', 1),
-(14, 'Title 14', '2024-04-17', '2024-05-03', 'design', 'A short description', 2),
-(15, 'Title 15', '2024-04-17', '2024-05-03', 'design', 'A short description', 3),
-(16, 'Title 16', '2024-04-28', '2024-05-08', 'testing', 'A short description', 1);
+(4, 'Title 4', '2024-04-20', '2024-04-27', 'development', 'A short description', 4),
+(5, 'Title 5', '2024-04-28', '2024-05-05', 'development', 'A short description', 5),
+(6, 'Title 6', '2024-04-22', '2024-04-29', 'testing', 'A short description', 6),
+(7, 'Title 7', '2024-05-04', '2024-05-11', 'complete', 'A short description', 7),
+(8, 'Title 8', '2024-05-31', '2024-06-07', 'deployment', 'A short description', 8),
+(9, 'Title 9', '2024-04-29', '2024-05-06', 'development', 'A short description', 1),
+(10, 'Title 10', '2024-04-29', '2024-05-06', 'complete', 'A short description', 2),
+(11, 'Title 11', '2024-04-29', '2024-05-06', 'development', 'A short description', 3),
+(12, 'Title 12', '2024-04-28', '2024-05-05', 'complete', 'A short description', 4),
+(13, 'Title 13', '2024-04-12', '2024-04-19', 'design', 'A short description', 5),
+(14, 'Title 14', '2024-04-17', '2024-05-03', 'design', 'A short description', 6),
+(15, 'Title 15', '2024-04-17', '2024-05-03', 'design', 'A short description', 7),
+(16, 'Title 16', '2024-04-28', '2024-05-08', 'testing', 'A short description', 8),
+(17, 'Title 17', '2024-04-17', '2024-04-19', 'deployment', 'A short description', 1),
+(18, 'Title 18', '2024-04-16', '2024-04-16', 'deployment', 'A short description', 2);
 
 -- --------------------------------------------------------
 
@@ -66,10 +68,10 @@ INSERT INTO `projects` (`pid`, `title`, `start_date`, `end_date`, `phase`, `desc
 --
 
 CREATE TABLE `users` (
-  `uid` int(10) UNSIGNED NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL
+  `uid` int UNSIGNED NOT NULL,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -77,9 +79,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`uid`, `username`, `password`, `email`) VALUES
-(1, 'Rikesh', '$2y$10$.EP.t6fqW7XtCjPamHwWdust2ZytYeJYyJYYZqnPqjnwyOhSHo2mW', 'rkpatel1738@gmail.com'),
-(2, 'Om', '$2y$10$8WPK4Vpdk.rBSpkqMZvTBe5MqHMXbRBDtFBK530.0DIm7Xeam5s9G', 'omp@gmail.com'),
-(3, 'Tilak', '$2y$10$ms2bECoNWCP3Z95MtPYNwebaOuwRjVHrrD83mxBjncTeaUiMXwGp2', 'tilak2@gmail.com');
+(1, 'Rikesh', '$2y$10$3zBMOo3uCc3RSi/tp0FvTe07W2dByz7UbWEG.SypWB1HUBcIzwzpu', 'rkpatel1738@gmail.com'),
+(2, 'Om', '$2y$10$4AZznX6qehHGy8p5YZsUUeaTSF3SVyYJgm/rYLRsp.6LsPhJ1mshW', 'omp@gmail.com'),
+(3, 'Tilak', '$2y$10$Oy1zz4i/0Fn3II40J2Mp2.jNqmzdhKal2L0iCampAkWYl4tkgiOT6', 'tilak2@gmail.com'),
+(4, 'Robiul', '$2y$10$wC2maEP4G4.ALhtzb5x0Oe4ah7G.zHNxwzrt42Ucmr5a7zu0Zjtra', 'rmiah@gmail.com'),
+(5, 'Tommy', '$2y$10$e7qWHL6gt8Onjr8wB1mcleotj564i/Wk7swKB1n0Wefg75ecHPnra', 'tommy1@gmail.com'),
+(6, 'James', '$2y$10$/mS7OFbXB6KUmYzsPY3fAurzIdFu1yS4J5h/jFzU8cMQeNqfHl6w.', 'james2@gmail.com'),
+(7, 'Tariq', '$2y$10$BPGg6.rHRFEcpDJcdtR5OuNzU2jAtkqOEV1JvfDMaWxgd0UJpIk2S', 'tariq3@gmail.com'),
+(8, 'Kanan', '$2y$10$nDcO8dLzYSVFXmK3LU4oLOZ4/Fk7hdJct4f5EtiC3rRz/L5q6PFb2', 'kanan4@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -106,13 +113,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `pid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `pid` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `uid` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
